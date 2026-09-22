@@ -67,3 +67,36 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+###########################################
+# User added files
+###########################################
+# Настройки Visual Studio и VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.db
+*.opendb
+
+# Директории скомпилированного кода и сборки
+x64/
+x86/
+Debug/
+Release/
+Laba/x64/
+Laba/Debug/
+Laba/Release/
+Laba/*/Debug/
+Laba/*/Release/
+
+# Временные файлы компилятора и логов
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.tlog
+*.log
+*.json
+*.command
+app.log
