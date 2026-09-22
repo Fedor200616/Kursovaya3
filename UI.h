@@ -4,6 +4,7 @@
 #include <functional>
 #include <conio.h>
 #include "FileWork.h"
+#include "Main.h"
 
 namespace input {
     enum class key
@@ -22,7 +23,7 @@ namespace input {
         Null = 0
     };
 
-    key getKey() {
+    inline key getKey() {
         int ch = _getch();
 
         // Если считн служебный байт стрелок/расширенных клавиш (0 или 224)
@@ -44,22 +45,27 @@ namespace input {
     }
 }
 
+class MenuInfo {
+public:
+    std::string name;
+    bool show = true;
+    bool entered = true;
+    std::function<std::string()> param = nullptr;
+
+    
+};
+
 
 struct MenuOut {
     int total_row;
-    std::vector<int> set_row;
-    std::vector<int> show_row;
     int act_row;
 
     std::string before_show = "";
-    std::vector<std::string> menu;
-    std::vector<std::function<std::string()>> MenuParam;
+    std::vector<MenuInfo> menu;
     std::string post_show = "";
 
     std::string ActMark = "->";
     std::string InactMark = "  ";
-
-    
 
 };
 
@@ -82,20 +88,31 @@ public:
     virtual ~MenuLogic() = default;
     
     virtual void beforeShow(MenuOut& menu) {};
-    virtual bool showUI(const MenuOut& menu);
+    virtual void showUI(const MenuOut& menu);
     virtual void handleNav(MenuNav nav) = 0;
 
 protected:
     bool windowSize();
     MenuNav GetAction(input::key key_code) const;
-    virtual std::string menuString() {};
+    virtual std::string menuString() = 0;
     
 };
 
-class MainMenu : public MenuLogic {
 
+class MainMenu : public MenuLogic {
+private:
+    MenuOut out;
+    bool finished = false;
+    int next_state = 0;
+
+public:
+    MainMenu(const std::string& filepath);
+
+    void beforeShow(MenuOut& menu) override;
+    void showUI(const MenuOut& menu) override;
+    void handleNav(MenuNav nav) override;
 };
 
-class ExplorerMenu : public MenuLogic, public FileExplorer {
+class ExplorerMenu : public MenuLogic {
 
 };

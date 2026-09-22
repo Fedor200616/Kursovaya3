@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-#include "Status.h"
+#include "Student.h"
 #include "Main.h"
 
 namespace fs = std::filesystem;
@@ -36,7 +36,7 @@ public:
     fs::path ExplorerUI(fs::path directory);
 
 private:
-    fs::path current_path = Main::getExeDirectory();
+    fs::path current_path = MainInfo::getExeDirectory();
 
     fs::path TurnBack();
     fs::path OpenFolder(std::string name);
