@@ -21,7 +21,7 @@ enum class Inf {
     digit
 };
 
-enum class State {
+enum class StateType {
     MainMenu,
     Explorer,
     SaveDialog,
@@ -29,15 +29,16 @@ enum class State {
     
     EditorView,
     EditorMenu,
-
-
 };
 
 class MainState {
 private:
     std::vector<StudentInfo> info; //Массив данных об учениках
     fs::path exe_filepath; //Путь к exe файлу программы
-    State user_state;
+    StateType user_state;
+   
+
+public:
     bool initExePath(int argc, char* argv[]) {
         if (argc > 0 && argv && argv[0]) {
             exe_filepath = std::filesystem::absolute(argv[0]);
@@ -45,22 +46,14 @@ private:
         }
         return false;
     }
-
-public:
-    MainState(int argc, char* argv[]) {
-        if (!initExePath(argc, argv)) {
-            std::cerr << "Внутренняя ошибка получения пути к EXE.";
-            exe_filepath = fs::current_path();
-        }
-    }
     
-    fs::path getExe() {
+    fs::path getExe() const {
         return exe_filepath;
     }
-    fs::path getExeDirectory() {
+    fs::path getExeDirectory() const {
         return exe_filepath.parent_path();
     }
 
-    bool changeState(State new_state);
+    bool changeState(StateType new_state);
 
 };
