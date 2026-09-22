@@ -9,14 +9,25 @@ enum class fileType{
 }
 
 class File {
+public:
     fs::path filePath;
     fileType type;
 
-    bool loadFromFile (const fs::path& path, std::vector<StudentInfo>& Info); 
-    bool saveToFile (const fs::path& path, std::vector<StudentInfo>& Info);
+    bool loadFromFile (std::vector<StudentInfo>& Info); 
+    bool saveToFile (std::vector<StudentInfo>& Info);
 
-    bool createBackup(const fs::path& main_path, const std::vector<StudentInfo>& Info);
-    bool removeBackup(const std::string& main_path);
+    bool createBackup(fs::path& main_path, const std::vector<StudentInfo>& Info);
+    bool removeBackup(const fs::path& main_path);
+
+private:
+    fs::path GetPath(){ 
+        return filePath;
+    }
+    fileType GetType(){
+        return type;
+    }
+
+
 }
 
 class FileExplorer{
