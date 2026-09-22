@@ -5,6 +5,7 @@
 
 //Запись о студенте
 struct StudentInfo {
+    unsigned int num;
     std::string name;
     std::string group;
     std::string pass;
