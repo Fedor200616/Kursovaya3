@@ -8,7 +8,10 @@ enum class fileType{
     CSV
 }
 
-namespace FileStorage {
+class File {
+    fs::path filePath;
+    fileType type;
+
     bool loadFromFile (const fs::path& path, std::vector<StudentInfo>& Info); 
     bool saveToFile (const fs::path& path, std::vector<StudentInfo>& Info);
 

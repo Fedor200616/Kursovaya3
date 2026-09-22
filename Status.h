@@ -13,9 +13,7 @@ struct StudentInfo {
 
 struct WorkState {
     std::vector<StudentInfo> info; //Массив данных об учениках
-    filesystem::path file_filepath; // Путь к файлу информации об учениках
     filesystem::path exe_filepath; //Путь к exe файлу программы
-    fileType type;
     bool is_modified; // Был ли модифицирован файл
 
     size_t sel_row = 0; // Выбранная строка
