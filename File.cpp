@@ -65,7 +65,7 @@ StudentInfo File::copyFromString(const std::string& str_buf, unsigned int i) {
     return res;
 }
 
-std::vector<StudentInfo>& File::loadFromFile() {
+std::vector<StudentInfo> File::loadFromFile() {
 	std::ifstream ifile(filePath);
 
 	std::vector<StudentInfo> result;
