@@ -3,7 +3,8 @@
 #include <vector>
 #include <functional>
 #include <conio.h>
-#include "FileWork.h"
+#include "File.h"
+#include "Application.h"
 #include "Main.h"
 
 namespace input {
@@ -103,7 +104,7 @@ protected:
     bool finished = false;
     StateType next_state;
 
-    bool windowSize();
+    bool windowSize() const;
     MenuNav GetAction(input::key key_code) const;
     virtual std::string menuString() = 0;
     

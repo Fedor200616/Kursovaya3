@@ -18,7 +18,10 @@ enum class Inf {
     digit
 };
 
-class Students {
+/// <summary>
+/// Класс работы с базой студентов из файла
+/// </summary>
+class StudentDB {
 private:
     std::vector<StudentInfo> info;
 
