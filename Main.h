@@ -15,20 +15,22 @@ enum class StateType {
     EditorMenu,
 };
 
-class MainState {
+class Info {
 private:
-    std::vector<StudentInfo> info; //Массив данных об учениках
     fs::path exe_filepath; //Путь к exe файлу программы
-    StateType user_state = StateType::MainMenu;
-
-
-public:
     bool initExePath(int argc, char* argv[]) {
         if (argc > 0 && argv && argv[0]) {
             exe_filepath = fs::absolute(argv[0]);
             return true;
         }
         return false;
+    }
+
+public:
+    Info(int argc, char* argv[]) {
+        if (!initExePath(argc, argv)) {
+            exe_filepath = fs::current_path();
+        }
     }
 
     fs::path getExe() const {
@@ -38,8 +40,4 @@ public:
         return exe_filepath.parent_path();
     }
 
-    bool changeState(StateType new_state);
-
 };
-
-inline MainState MainInfo;

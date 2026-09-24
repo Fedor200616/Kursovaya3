@@ -17,3 +17,10 @@ enum class Inf {
     pass,
     digit
 };
+
+class Students {
+private:
+    std::vector<StudentInfo> info;
+
+public:
+};

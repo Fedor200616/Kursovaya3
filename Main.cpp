@@ -5,7 +5,7 @@
 
 
 int main(int argc, char* argv[]) {
-	MainInfo.initExePath(argc, argv);
+	MainState MainInfo(argc, argv);
 
 	return 0;
 }

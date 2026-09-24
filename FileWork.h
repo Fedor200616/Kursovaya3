@@ -30,15 +30,3 @@ public:
     }
 };
 
-class FileExplorer {
-    
-public:
-    fs::path ExplorerUI(fs::path directory);
-
-private:
-    fs::path current_path = MainInfo::getExeDirectory();
-
-    fs::path TurnBack();
-    fs::path OpenFolder(std::string name);
-    fs::path FileCheck(std::string name);
-};

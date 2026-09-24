@@ -45,16 +45,23 @@ namespace input {
     }
 }
 
+class UI_Interface {
+private:
+
+
+public:
+
+
+};
+
+
 class MenuInfo {
 public:
     std::string name;
     bool show = true;
     bool entered = true;
     std::function<std::string()> param = nullptr;
-
-    
 };
-
 
 struct MenuOut {
     int total_row;
@@ -92,6 +99,10 @@ public:
     virtual void handleNav(MenuNav nav) = 0;
 
 protected:
+    MenuOut out;
+    bool finished = false;
+    StateType next_state;
+
     bool windowSize();
     MenuNav GetAction(input::key key_code) const;
     virtual std::string menuString() = 0;
@@ -101,12 +112,9 @@ protected:
 
 class MainMenu : public MenuLogic {
 private:
-    MenuOut out;
-    bool finished = false;
-    int next_state = 0;
 
 public:
-    MainMenu(const std::string& filepath);
+    MainMenu(UI_Interface& filepath);
 
     void beforeShow(MenuOut& menu) override;
     void showUI(const MenuOut& menu) override;
@@ -114,5 +122,14 @@ public:
 };
 
 class ExplorerMenu : public MenuLogic {
+private:
+    
+
+public:
+    ExplorerMenu(UI_Interface& state);
+
+    void beforeShow(MenuOut& menu) override;
+    void showUI(const MenuOut& menu) override;
+    void handleNav(MenuNav nav) override;
 
 };

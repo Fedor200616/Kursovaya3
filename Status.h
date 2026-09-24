@@ -15,6 +15,9 @@ enum class StateType {
     EditorMenu,
 };
 
+class General {
+    StateType state;
 
+};
 
 /*ѕлавность: „тобы консоль не мерцала при посто€нной перерисовке в фазе Show UI, очищайте экран не через system("cls"), а перемеща€ каретку в начало (0,0) через ANSI-последовательность \033[H или SetConsoleCursorPosition.*/
