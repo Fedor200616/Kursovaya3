@@ -43,6 +43,7 @@ private:
     }
     AppConfig config;
 
+
 public:
     Info(int argc, char* argv[]) {
         if (!initExePath(argc, argv)) {
@@ -59,6 +60,9 @@ public:
     }
     fs::path getExeDirectory() const {
         return exe_filepath.parent_path();
+    }
+    AppConfig getConfig(){
+        return config;
     }
 
 };

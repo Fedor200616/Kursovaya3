@@ -4,6 +4,7 @@
 #include <vector>
 #include "File.h"
 #include "Main.h"
+#include "Log.h"
 
 
 enum class StateType {
@@ -32,7 +33,13 @@ private:
     bool start_with_path;
 
 public:
-    Application(int argc, char* argv[]) : app_info(argc, argv), file_manager(app_info.getStartPath()) {
+    Application(int argc, char* argv[]) : app_info(argc, argv),
+                                        file_manager(app_info.getStartPath()){
+        Log::getInstance().init(
+            app_info.getExeDirectory(),
+            app_info.getConfig().do_log
+        );
+        LOG_INFO("Логи и приложение инициализированы");
         fs::path start_path = app_info.getStartPath();
         if (!start_path.empty()) {
             current_state = StateType::EditorView;
