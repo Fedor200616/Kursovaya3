@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <iostream>
 #include "Student.h"
+#include "Log.h"
 
 namespace fs = std::filesystem;
 
@@ -37,6 +38,7 @@ private:
     bool initExePath(int argc, char* argv[]) {
         if (argc > 0 && argv && argv[0]) {
             exe_filepath = fs::absolute(argv[0]);
+            LOG_INFO("Путь к exe файлу: " + exe_filepath);
             return true;
         }
         return false;
@@ -48,6 +50,7 @@ public:
     Info(int argc, char* argv[]) {
         if (!initExePath(argc, argv)) {
             exe_filepath = fs::current_path();
+            LOG_ERROR("Ошибка нахождения пути к exe, выбран путь по умолчанию " + exe_filepath);
         }
         config = AppConfig::parseArgs(argc, argv);
     }

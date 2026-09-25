@@ -44,9 +44,11 @@ public:
         if (!start_path.empty()) {
             current_state = StateType::EditorView;
             start_with_path = true;
+            LOG_INFO("Запуск с начальным путем: " + start_path);
         }
         else {
             start_with_path = false;
+            LOG_INFO("Запуск по умолчанию");
         }
     }
 };

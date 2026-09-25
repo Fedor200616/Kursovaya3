@@ -1,4 +1,5 @@
 #include "File.h"
+#include "Log.h"
 
 namespace {
     // Вспомогательная функция для удаления лишних пробелов по краям поля
@@ -22,11 +23,13 @@ StudentInfo File::copyFromString(const std::string& str_buf, unsigned int i) {
 
     char sep_ch;
     if (type == fileType::TXT)
+        LOG_INFO("Выбран файл ТХТ, знак раздела - |")
         sep_ch = '|';
     else if (type == fileType::CSV)
+        LOG_INFO("Выбран файл CSV, знак раздела - ,")
         sep_ch = ',';
     else {
-        std::cerr << "Ошибка выбора файла";
+        LOG_WARN("Ошибка выбора расширения, знак раздела - |")
         sep_ch = '|';
     }
 
@@ -72,7 +75,7 @@ std::vector<StudentInfo> File::loadFromFile() {
 	std::string str_buf; // промежуточная строка из которой будем брать инфу
 
 	if (!ifile.is_open()) {           // проверяем
-		std::cerr << "Не удалось открыть файл фамилий\n";
+		LOG_ERROR("Не удалось открыть файл фамилий\n");
         type = fileType::ERROR;
 		return result;
 	}
@@ -86,7 +89,7 @@ std::vector<StudentInfo> File::loadFromFile() {
                 res_buf.num == "Номер" &&
                 res_buf.pass == "Пароль");
             if (!is_norm) {
-                std::cerr << "Ошибка в шапке файла, убедитесь в корректности файла";
+                LOG_ERROR("Ошибка в шапке файла");
                 result[0] = { 1, "", "", "", "" };
                 type = fileType::ERROR;
                 return result;
@@ -95,5 +98,6 @@ std::vector<StudentInfo> File::loadFromFile() {
         result.push_back(res_buf);
         i++;
 	}
+    LOG_INFO("Файл обработан");
     return result;
 }

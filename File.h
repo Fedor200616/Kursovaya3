@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Student.h"
+#include "Log.h"
 
 namespace fs = std::filesystem;
 
@@ -30,6 +31,7 @@ public:
 
     File(fs::path file){
         filePath = file;
+        LOG_INFO("ѕуть к файлу " + filePath)
     }
     File() {}
 

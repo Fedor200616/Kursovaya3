@@ -6,7 +6,7 @@
 
 
 int main(int argc, char* argv[]) {
-	
+	LOG_INFO("Запуск программы");
 
 	return 0;
 }
